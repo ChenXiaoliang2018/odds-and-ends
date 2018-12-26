@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .container {
+        width: 249px;
+        height: 218px;
+        margin: 100px auto;
+        /*border: 1px solid #000;*/
+        position: relative;
+    }
+    .rocket {
+      width: 100%;
+      height: 100%;
+      background: url(images/page.png) -240px 0;
+      -webkit-animation: rocket 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s infinite alternate;
+    }
+    .rain {
+      width: 249px;
+      height: 304px;
+      background: url(images/page.png) -240px -215px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      -webkit-animation: rain 0.5s linear 0s infinite;
+    }
+    @-webkit-keyframes rocket {
+      0% {
+        transform: translate(-20px, -20px);
+      }
+      100% {
+        transform: translate(20px, 20px);
+      }
+    }
+    @-webkit-keyframes rain {
+      0% {
+        transform: translate(-50px, 50px);
+      }
+      50% {
+        transform: translate(-124.5px, 109px);
+      }
+      100% {
+        transform: translate(-249px, 218px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rocket"></div>
+    <div class="rain"></div>
+  </div>
+</body>
+</html>

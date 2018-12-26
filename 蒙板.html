@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        background: url(images/head_pic.jpg) center -200px fixed;
+        height: 1100px;
+        position: relative;
+      }
+      .content {
+        width: 740px;
+        height: 400px;
+        padding: 50px 30px;
+        position: absolute;
+        left: 50%;
+        margin-left: -400px;
+        top: 50px;
+        text-indent: 2em;        
+        z-index: 1;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+      }
+      .content h3 {
+        text-align: center;
+        font-size: 20px;
+        color: red;
+        height: 40px;
+        line-height: 40px;
+      }
+      .content p {
+        font-size: 12px;
+        text-indent: 2em;
+        line-height: 28px;
+      }
+      .content::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        /*background-color: rgba(255, 255, 255, .5);*/
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: url(images/head_pic.jpg) center -200px fixed;
+        filter: blur(7px);
+        z-index: -1;
+        margin: -30px;
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h3>FBI Warning</h3>
+            <p>Hab die ganze welt gesehn Von singapur bis aberdeen Wenn du mich fragst wo's am sch?nsten war Sag ich sansibar Es war 'ne harte uberfahrt Zehn wochen nur das deck geschrubbt Hab die welt verflucht In den wind gespuckt Und salziges wasser geschluckt Als wir den anker warfen War es himmlische ruh Und die sonne stand senkrecht am himmel Als ich uber die reeling sah Da glaubte ich zu tr?umen Da war'n tausend boote Und sie hielten auf uns zu In den booten waren m?nner und fraun Ihre leiber gl?nzten in der sonne Und sie sangen ein lied Das kam mir seltsam bekannt vor Aber so hab ich's noch nie geh?rt So hab ich's noch nie geh?rt Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Ihre boote machten l?ngsseits fest Und mit dem wind wehte gel?chter heruber Sie nahmen ihre blumenkr?nze ab Und warfen sie zu uns heruber Und schon war die party I'm gange Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Ich hab das paradies gesehn Es war um neunzehnhundertzehn Der steuermann hatte matrosen am mast Und den zahlmeister Ha'm die gonokokken vernascht Aber sonst war'n wir bei bester gesundheit Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he Aloha heja he aloha heja he Aloha heja he</p>
+        </div>
+    </div>
+</body>
+</html>
