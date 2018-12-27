@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		1000 以内所有的质数输出
+		1 遍历所有的数字1-1000 for循环
+		2 内部使用if进行限制（只要找到一个约数那么这个数就不是质数，赶快测试下一个值）
+		*/
+
+		// 遍历1-1000
+		var sum=0;
+		wai: for(var i = 2 ; i <= 1000 ; i ++) {
+			// 判断i是不是质数  81
+			// 遍历2-i的开方之间有没有约数
+			for(var j = 2 ; j <= Math.sqrt(i) ; j ++) {
+				// 判断j是不是i的约数
+				if(i % j == 0) {
+					// i 存在其他约数 这个i一定不是质数，我们不要这个i, 赶快试试i++
+					continue wai;
+				}
+			}
+			sum++;
+			// 这个i是我们想要的质数
+			console.log(i);
+		}
+		console.log(sum);
+
+
+
+
+
+
+
+
+		
+
+
+
+  	
+
+
+		
+	</script>
+</body>
+</html>
