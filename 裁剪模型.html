@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+     #box {
+      width: 430px;
+      height: 430px;
+      margin: 50px auto;
+      position: relative;
+      border: 1px solid #000;
+     }
+     .mask {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .3);
+     }
+     #area {
+      width: 150px;
+      height: 150px;
+      background: url(images/small.jpg);
+      position: absolute;
+      left: 0;
+      top: 0;
+     }
+     #dot {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      transform: translateX(50%) translateY(50%);
+      background: red;
+      border-radius: 50%;
+     }
+  </style>
+</head>
+<body> 
+    <div id="box">
+        <div class="mask"></div>
+        <div id="area">          
+          <div id="dot"></div>
+        </div>
+        <img src="images/small.jpg" alt="">
+      </div>  
+  <script type="text/javascript">
+    var box = document.getElementById('box');
+    var area = document.getElementById('area');
+    var dot = document.getElementById('dot');
+    // 拖拽部分
+    area.onmousedown = function(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      var left = area.offsetLeft;
+      var top = area.offsetTop;
+      document.onmousemove = function(e) {
+        var m_x = e.clientX;
+        var m_y = e.clientY;
+        var m_left = m_x - x + left;
+        var m_top = m_y - y + top;
+        if(m_left < 0) {
+          m_left = 0;
+        } else if (m_left > box.clientWidth - area.clientWidth) {
+          m_left = box.clientWidth - area.clientWidth
+        }
+        if(m_top < 0) {
+          m_top = 0;
+        } else if (m_top > box.clientHeight - area.clientHeight) {
+          m_top = box.clientHeight - area.clientHeight
+        }
+        area.style.left = m_left + 'px';
+        area.style.top = m_top + 'px';
+        area.style.backgroundPosition = -m_left + 'px ' + -m_top +　'px';
+      }
+    } 
+    area.onmouseup = function(e) {
+      document.onmousemove = null;
+    }
+    // 裁剪部分
+    dot.onmousedown = function(e) {
+      e.stopPropagation();
+      var x = e.clientX;
+      var y = e.clientY;
+      var w = area.clientWidth;
+      var h = area.clientHeight;
+      document.onmousemove = function(e) {
+        var m_x = e.clientX;
+        var m_y = e.clientY;
+        var m_w = m_x - x + w;
+        var m_h = m_y - y + h;
+        if(m_w < 0) {
+          m_w = 0;
+        } else if (m_w > box.clientWidth - area.offsetLeft) {
+          m_w = box.clientWidth - area.offsetLeft
+        }
+        if(m_h < 0) {
+          m_h = 0;
+        } else if (m_h > box.clientHeight - area.offsetTop) {
+          m_h = box.clientHeight - area.offsetTop;
+        }
+        area.style.width = m_w + 'px';
+        area.style.height = m_h + 'px';
+      }
+    }
+    dot.onmouseup = function(e) {
+      document.onmousemove = null;
+    }
+  </script>
+</body>
+</html>
