@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body style='background: lightblue'>
+  <script type="text/javascript">
+    function Balloon(img) {
+      this.dom = document.createElement('div');
+      this.img = img;
+      this.width = this.img.width / 4;
+      this.height = this.img.height / 3;
+      this.positionX = -this.width * parseInt(Math.random() * 4);
+      this.positionY = -this.height * parseInt(Math.random() * 3);
+      // 给气球添加字母
+      this.arr = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      this.index = parseInt(this.arr.length * Math.random());
+      this.str = this.arr[this.index];
+      // dom上树
+      this.upTree = function() {
+        document.body.appendChild(this.dom);
+      }
+      // 设置样式方法
+      this.setStyle = function() {
+        this.dom.style.width = this.width + 'px';
+        this.dom.style.height = this.height + 'px';
+        this.dom.style.position = 'absolute';
+        this.dom.style.left = 0;
+        this.dom.style.top = (document.documentElement.clientHeight - this.height) * Math.random() + 'px';
+        this.dom.style.backgroundImage = 'url(' + this.img.src + ')';
+        this.dom.style.backgroundPositionX = this.positionX + 'px';
+        this.dom.style.backgroundPositionY = this.positionY + 'px';
+        // 设置字母样式
+        this.dom.style.textAlign = 'center';
+        this.dom.style.lineHeight = this.height * 2 / 3 + 'px';
+        this.dom.style.fontSize = '24px';
+        this.dom.style.fontWeight = 'bold';
+      }
+      // 移动方法
+      this.move = function() {
+        this.dom.style.left = this.dom.offsetLeft + 10 + 'px';
+      }
+      // 边界判定
+      this.check = function() {
+        if(this.dom.offsetLeft >= document.documentElement.clientWidth - this.width) {
+          this.dom.style.left = document.documentElement.clientWidth - this.width + 'px';
+          return true;
+        }
+        return false;
+      }      
+      // boom方法
+      this.boom = function() {
+        this.dom.parentNode.removeChild(this.dom);
+      }
+      //初始化方法
+      this.init = function() {
+        this.upTree();
+        this.setStyle();
+        this.dom.innerHTML = this.str;
+      }
+      this.init();
+    }
+
+    var img = document.createElement('img');
+    img.src = 'images/balloon.jpg';
+    var timer = null;
+    var arr = [];
+    var count = 0;
+    img.onload = function() {
+        timer = setInterval(function() {
+          count++;
+          if (count % 10 === 0) {
+            var balloon = new Balloon(img);
+            arr.push(balloon);
+          }
+          for (var i = 0; i < arr.length; i++) {
+            arr[i].move();
+            if(arr[i].check()) {
+              alert('继续努力^-^');
+            }
+          }
+        }, 200)
+    }
+    // 键盘事件
+    document.onkeydown = function(e) {
+      // console.log(e.key)
+      for(var i = 0;i < arr.length; i++) {
+        if(e.key == arr[i].str) {
+          arr[i].boom();
+          arr.splice(i, 1);          
+        }
+      }
+    }
+  </script>
+</body>
+</html>
